@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Dependency-free checks for static portfolio links, assets, and metadata."""
 from html.parser import HTMLParser
+from hashlib import sha256
 from pathlib import Path
-from urllib.parse import unquote, urlsplit
+from urllib.parse import parse_qs, unquote, urlsplit
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -44,6 +45,10 @@ for link in site.links + site.assets:
     elif not url.scheme and not url.netloc:
         if url.path and not (ROOT / unquote(url.path)).is_file():
             site.errors.append(f'Missing local file: {url.path}')
+        elif url.path in ('style.css', 'script.js'):
+            digest = sha256((ROOT / url.path).read_bytes()).hexdigest()[:12]
+            if parse_qs(url.query).get('v') != [digest]:
+                site.errors.append(f'Stale asset version for {url.path}: run python3 scripts/version_assets.py')
         if url.fragment and not url.path and unquote(url.fragment) not in site.ids:
             site.errors.append(f'Missing section target: {url.fragment}')
 required = {'description', 'viewport', 'og:title', 'og:description', 'og:url', 'og:image', 'twitter:card'}

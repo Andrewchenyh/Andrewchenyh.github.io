@@ -1,6 +1,6 @@
 # Verification — October 3, 2026
 
-The redesign was served locally at `http://127.0.0.1:4173/` using Python's static HTTP server. Browser checks used Playwright with Chromium. These results concern the local implementation; the changed site has not been pushed to GitHub Pages.
+The redesign was served locally at `http://127.0.0.1:4173/` using Python's static HTTP server. Browser checks used Playwright with Chromium. These initial checks concern the local implementation; production checks from the follow-up are recorded below.
 
 ## Functional and responsive checks
 
@@ -47,3 +47,9 @@ The contrast issues found in the first run were corrected before the final pass.
 ## JD.com follow-up
 
 Added the official JD.com/Jingdong corporate-blog logo and a concise company-context sentence, and changed the website internship dates to July–October 2026. Checked the updated card at 1440, 768, 390, and 320 pixels: no horizontal overflow, missing image, JavaScript errors, or scoped axe accessibility violations. Visually reviewed the desktop and mobile card. The resume PDF was not changed during this follow-up (SHA-256: `b39d5619f75a0ea6f720f1bd534f8567a7fd5dc7eb03eb5170ad415cd045fbef`).
+
+## Public-site cache follow-up
+
+The public HTML, stylesheet, and JavaScript matched the local files, and the Pages deployment succeeded. The public site rendered correctly in a fresh browser. The files had been published through separate commits, and Pages returned `Cache-Control: max-age=600`; these findings point to a stale/mixed asset cache as the likely cause of the reported broken view.
+
+CSS and JavaScript references now include SHA-256-derived versions, bypassing the legacy unversioned cache entries. `scripts/version_assets.py` refreshes those versions, and `scripts/check_site.py` fails if either is stale. Deployment instructions now require related files to be published together. The resume PDF remains unchanged.

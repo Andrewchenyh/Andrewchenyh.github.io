@@ -27,12 +27,12 @@ The Python check uses only the standard library. Node is optional and only neede
 
 This is the account site repository, `Andrewchenyh/Andrewchenyh.github.io`, so it serves at the domain root. The existing repository has GitHub Pages enabled. No custom domain, client-side router, build system, or backend is required.
 
-1. Commit the site changes and push them to `main`.
+1. Run `python3 scripts/version_assets.py` and `python3 scripts/check_site.py`. Commit the HTML, CSS, JavaScript, and required assets **together**, then push the complete commit to `main`. Avoid publishing individual files in separate commits during a redesign: Pages can deploy an incomplete combination between those commits.
 2. In GitHub **Settings → Pages → Build and deployment**, use **Deploy from a branch**, **main**, **/ (root)**. The remote Pages source settings require authenticated access, so they could not be inspected during the redesign; confirm these settings if deployment does not run automatically.
 3. Wait for GitHub's Pages deployment to finish. Open the production URL and hard-refresh.
 4. Verify both `/#work` and `files/Andrew_Chen_Resume.pdf` on the deployed site.
 
-`.nojekyll` tells Pages to publish static files directly. All local assets use relative paths, and navigation uses real fragment links, so refreshes do not need a routing fallback. No new Actions workflow was introduced; GitHub manages the branch-based Pages deployment. The redesign has not been pushed or deployed by the agent.
+`.nojekyll` tells Pages to publish static files directly. All local assets use relative paths, and navigation uses real fragment links, so refreshes do not need a routing fallback. No new Actions workflow was introduced; GitHub manages the branch-based Pages deployment. CSS and JavaScript URLs include content-based version strings so a freshly loaded page cannot reuse the legacy unversioned files from a browser cache. Run the versioning script whenever either file changes; the static check rejects stale versions. GitHub Pages may cache HTML for up to ten minutes; a hard refresh helps immediately after a deployment.
 
 ## Files and editing
 
@@ -47,7 +47,8 @@ This is the account site repository, `Andrewchenyh/Andrewchenyh.github.io`, so i
 | `assets/favicon.svg` | Editable monogram; PNG fallback and Apple touch icon sit alongside it |
 | `assets/social-card.svg` | Editable share-card source; `social-card.png` is the 1200×630 image used by metadata |
 | `robots.txt`, `sitemap.xml`, `.nojekyll` | Crawling and static GitHub Pages support |
-| `scripts/check_site.py` | Dependency-free local link/asset/content structure checks |
+| `scripts/check_site.py` | Dependency-free local link/asset/content structure checks, including CSS/JS versions |
+| `scripts/version_assets.py` | Updates CSS/JS URL versions from the files’ SHA-256 hashes |
 
 To update the resume, replace `files/Andrew_Chen_Resume.pdf` with the new PDF using the same filename. All three resume links will use it. The PDF currently in this repository is a byte-for-byte copy of the updated resume supplied on October 3, 2026 (PDF creation date: October 1, 2026).
 
