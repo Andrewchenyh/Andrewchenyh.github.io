@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f7f8fa"/>
+  <path d="M70 103h1060M70 543h1060" stroke="#dfe3e9"/>
+  <g font-family="Helvetica, Arial, sans-serif"><text x="70" y="75" fill="#222831" font-size="32" font-weight="700">ac<tspan fill="#2856d8">.</tspan></text><text x="1130" y="70" fill="#626a77" font-size="17" text-anchor="end">ANDREW CHEN · AI &amp; SOFTWARE ENGINEERING</text>
+  <text x="70" y="224" fill="#222831" font-size="79" font-weight="600" letter-spacing="-4">AI systems,</text>
+  <text x="70" y="314" fill="#222831" font-size="79" font-weight="600" letter-spacing="-4">built to be</text>
+  <text x="70" y="404" fill="#2856d8" font-size="79" font-weight="600" letter-spacing="-4">trusted.</text>
+  <text x="73" y="471" fill="#626a77" font-size="20">Agents. Retrieval. Evaluation. Infrastructure.</text>
+  <text x="70" y="587" fill="#626a77" font-size="17">UC Davis · Statistics + Economics · June 2027</text>
+  <text x="1130" y="587" fill="#2856d8" font-size="17" text-anchor="end">andrewchenyh.github.io</text></g>
+  <g fill="#fff" stroke="#d9e0ec"><rect x="800" y="175" width="285" height="73" rx="8"/><rect x="800" y="284" width="285" height="73" rx="8"/><rect x="800" y="393" width="285" height="73" rx="8" fill="#edf2ff" stroke="#afc0f0"/></g>
+  <path d="M840 248v36m0 73v36" stroke="#adbad4"/>
+  <g font-family="Helvetica, Arial, sans-serif" fill="#222831" font-size="22"><text x="829" y="220">Retrieve.</text><text x="829" y="329">Reason.</text><text x="829" y="438" fill="#2856d8">Evaluate.</text></g>
+</svg>
